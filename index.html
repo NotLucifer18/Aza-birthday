@@ -140,17 +140,19 @@
   }
 
   /* Candles */
-  .candles { position: absolute; bottom: 195px; left: 50%; transform: translateX(-50%); width: 120px; height: 40px; z-index: 4; display: flex; justify-content: space-between; }
-  .candle { position: relative; width: 12px; height: 35px; background: repeating-linear-gradient(-45deg, white, white 4px, #f9c6d0 4px, #f9c6d0 8px); border-radius: 4px; cursor: pointer; transition: transform 0.2s; }
-  .candle:hover { transform: scale(1.05); }
-  .candle-wick { position: absolute; top: -6px; left: 5px; width: 2px; height: 6px; background: #4A2E3A; }
+  .candles { position: absolute; bottom: 195px; left: 50%; transform: translateX(-50%); width: 140px; height: 40px; z-index: 10; display: flex; justify-content: space-between; }
+  .candle { position: relative; width: 16px; height: 40px; background: repeating-linear-gradient(-45deg, white, white 4px, #f9c6d0 4px, #f9c6d0 8px); border-radius: 4px; cursor: pointer; transition: transform 0.2s; }
+  .candle::after { content: ''; position: absolute; top: -30px; left: -15px; right: -15px; bottom: -10px; }
+  .candle:hover { transform: scale(1.1); }
+  .candle-wick { position: absolute; top: -6px; left: 7px; width: 2px; height: 6px; background: #4A2E3A; pointer-events: none; }
   
   .flame {
-    position: absolute; top: -24px; left: -2px; width: 16px; height: 22px;
+    position: absolute; top: -24px; left: 0px; width: 16px; height: 22px;
     background: radial-gradient(ellipse at bottom, #fffbcc 10%, #ffc107 50%, #ff5722 100%);
     border-radius: 50% 50% 20% 20%;
     box-shadow: 0 0 15px #ffc107;
     animation: flicker 0.6s infinite alternate; transition: opacity 0.3s;
+    pointer-events: none;
   }
   
   @keyframes flicker {
@@ -216,55 +218,27 @@
     <div class="traits-grid">
 
       <div class="trait-card">
-        <svg class="trait-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="36" r="34" fill="#FDE8F0"/>
-          <path d="M36 48C36 48 22 36 22 26C22 20.5 26.5 16 32 16C34.5 16 36 17.5 36 17.5C36 17.5 37.5 16 40 16C45.5 16 50 20.5 50 26C50 36 36 48 36 48Z" fill="#E8728A" opacity="0.8"/>
-          <path d="M28 22C28 22 30 20 32 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="16" cy="20" r="3" fill="#F9C6D0"/>
-          <circle cx="56" cy="30" r="2" fill="#F9C6D0"/>
-          <path d="M18 50L22 46M54 50L50 46" stroke="#E8728A" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <div class="trait-title">Funny</div>
-        <p class="trait-desc">She'll make you laugh at the worst moments — and somehow that makes it 10x better. Comedy runs through her veins.</p>
+        <div class="trait-icon" style="font-size: 50px; line-height: 72px;">📖</div>
+        <div class="trait-title">Bookworm</div>
+        <p class="trait-desc">She loves getting lost in books as much as she loves getting lost in her imagination. A true reader at heart.</p>
       </div>
 
       <div class="trait-card">
-        <svg class="trait-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="36" r="34" fill="#F5EAFF"/>
-          <rect x="28" y="32" width="16" height="20" rx="4" fill="#FDDBB4"/>
-          <rect x="28" y="16" width="6" height="20" rx="3" fill="#FDDBB4" transform="rotate(-15 28 16)"/>
-          <rect x="38" y="16" width="6" height="20" rx="3" fill="#FDDBB4" transform="rotate(15 38 16)"/>
-          <path d="M22 38C22 38 28 32 36 32C44 32 50 38 50 38" stroke="#E8728A" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.3"/>
-          <circle cx="54" cy="20" r="4" fill="#9B5C8F" opacity="0.6"/>
-          <path d="M54 12V16M54 24V28M46 20H50M58 20H62" stroke="#9B5C8F" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        </svg>
-        <div class="trait-title">Naughty</div>
-        <p class="trait-desc">Always the one with the wildest idea in the room. Rules are more like suggestions to her — and honestly, we love her for it.</p>
+        <div class="trait-icon" style="font-size: 50px; line-height: 72px;">🌸</div>
+        <div class="trait-title">Azalea Flowers</div>
+        <p class="trait-desc">Named after the most beautiful flowers, and she embodies all their vibrant, unapologetic pink energy.</p>
       </div>
 
       <div class="trait-card">
-        <svg class="trait-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="36" r="34" fill="#FFF7F3"/>
-          <path d="M36 12C36 25.2548 46.7452 36 60 36C46.7452 36 36 46.7452 36 60C36 46.7452 25.2548 36 12 36C25.2548 36 36 25.2548 36 12Z" fill="#FDDBB4"/>
-          <path d="M20 20C20 25.5228 24.4772 30 30 30C24.4772 30 20 34.4772 20 40C20 34.4772 15.5228 30 10 30C15.5228 30 20 25.5228 20 20Z" fill="#E8728A" opacity="0.6"/>
-          <path d="M52 48C52 51.3137 54.6863 54 58 54C54.6863 54 52 56.6863 52 60C52 56.6863 49.3137 54 46 54C49.3137 54 52 51.3137 52 48Z" fill="#9B5C8F" opacity="0.5"/>
-        </svg>
-        <div class="trait-title">Radiant</div>
-        <p class="trait-desc">She lights up every room she walks into without even trying. That energy is just hers.</p>
+        <div class="trait-icon" style="font-size: 50px; line-height: 72px;">😈</div>
+        <div class="trait-title">Little Devil</div>
+        <p class="trait-desc">She loves Lucifer (the devil... and me, her favorite dad). A perfect mix of sweet and delightfully wicked.</p>
       </div>
 
       <div class="trait-card">
-        <svg class="trait-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="36" cy="36" r="34" fill="#E5F7ED" opacity="0.6"/>
-          <circle cx="36" cy="36" r="28" fill="#C8EDE3" opacity="0.4"/>
-          <path d="M16 46L20 22L30 34L36 18L42 34L52 22L56 46H16Z" fill="#FDDBB4" stroke="#E8728A" stroke-width="3" stroke-linejoin="round"/>
-          <circle cx="20" cy="22" r="3" fill="#E8728A"/>
-          <circle cx="36" cy="18" r="4" fill="#9B5C8F"/>
-          <circle cx="52" cy="22" r="3" fill="#E8728A"/>
-          <rect x="22" y="40" width="28" height="2" rx="1" fill="#E8728A" opacity="0.5"/>
-        </svg>
-        <div class="trait-title">One of a Kind</div>
-        <p class="trait-desc">They literally broke the mold after making her. Chaotic, sweet, bold and completely irreplaceable.</p>
+        <div class="trait-icon" style="font-size: 50px; line-height: 72px;">💖</div>
+        <div class="trait-title">Pink Obsessed</div>
+        <p class="trait-desc">If it's pink, she loves it. The world is just better when it's tinted in her favorite chaotic color.</p>
       </div>
 
     </div>
@@ -278,15 +252,12 @@
     <div class="letter-card">
       <p>
         Okay Azalea, listen — I'm only writing this because it's your birthday and you legally cannot roast me back right now.<br><br>
-        You are genuinely one of the most unhinged, funniest, most chaotic people I know.
-        And I mean that as the biggest compliment. You say exactly what's on your mind,
-        you never fail to make things 10x more dramatic than they need to be,
-        and somehow it's always the best part of the day.<br><br>
-        I call you my daughter and I stand by it — not because I have to, but because you're stuck with me now.
-        You're annoying in the best way possible, and if you tell anyone I said any of this I will fully deny it.<br><br>
-        Happy birthday, you little menace. I hope it's as extra as you are. 🌸
+        It’s crazy to think that you first came into my life just to bully me, and now here I am, officially your favorite dad (and yes, you are my favorite little devil). You are genuinely one of the most unhinged, funniest, most chaotic people I know.<br><br>
+        You say exactly what's on your mind, you never fail to make things 10x more dramatic than they need to be, and somehow it's always the best part of my day.<br><br>
+        I call you my daughter and I stand by it. You're annoying in the best way possible, and if you tell anyone I said any of this I will fully deny it.<br><br>
+        Happy birthday, you little menace. Keep blooming like the bright pink Azalea flowers you love so much, keep reading your books, and keep being the chaotic devil I adore. 🌸
       </p>
-      <div class="letter-sign">— your fav (admit it) 😌</div>
+      <div class="letter-sign">— Lucifer (your fav dad) 😈</div>
     </div>
   </div>
 </section>
