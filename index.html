@@ -377,4 +377,95 @@
 <script>
 /* ── CONFETTI ── */
 const confCanvas = document.getElementById('confetti');
-c
+const ctx = confCanvas.getContext('2d');
+
+function resize() {
+  confCanvas.width = window.innerWidth;
+  confCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+const colors = ['#F9C6D0', '#FDDBB4', '#E5D0F5', '#C8EDE3', '#E8728A'];
+const confetti = [];
+
+function createConfetti(count) {
+  for(let i=0; i<count; i++) {
+    confetti.push({
+      x: Math.random() * confCanvas.width,
+      y: Math.random() * confCanvas.height - confCanvas.height,
+      r: Math.random() * 4 + 2,
+      d: Math.random() * 100,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.floor(Math.random() * 10) - 10,
+      tiltAngleInc: (Math.random() * 0.07) + 0.05,
+      tiltAngle: 0
+    });
+  }
+}
+createConfetti(100);
+
+function drawConfetti() {
+  ctx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+  confetti.forEach((p) => {
+    p.tiltAngle += p.tiltAngleInc;
+    p.y += (Math.cos(p.d) + 1 + p.r / 2) / 2;
+    p.x += Math.sin(p.d) * 2;
+    
+    if (p.y > confCanvas.height) {
+      p.x = Math.random() * confCanvas.width;
+      p.y = -10;
+      p.tilt = Math.floor(Math.random() * 10) - 10;
+    }
+    
+    ctx.beginPath();
+    ctx.lineWidth = p.r;
+    ctx.strokeStyle = p.color;
+    ctx.moveTo(p.x + p.tilt + p.r, p.y);
+    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+    ctx.stroke();
+  });
+  requestAnimationFrame(drawConfetti);
+}
+drawConfetti();
+
+/* ── PETALS ── */
+for (let i = 0; i < 15; i++) {
+  let petal = document.createElement('div');
+  petal.className = 'petal';
+  petal.style.left = Math.random() * 100 + 'vw';
+  petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+  petal.style.animationDuration = (Math.random() * 3 + 5) + 's';
+  petal.style.animationDelay = Math.random() * 5 + 's';
+  document.body.appendChild(petal);
+}
+
+/* ── CANDLES ── */
+let blownCount = 0;
+function blowCandle(candle) {
+  if (!candle.classList.contains('blown')) {
+    candle.classList.add('blown');
+    blownCount++;
+    if (blownCount === 5) {
+      setTimeout(() => {
+        document.getElementById('blowHint').style.display = 'none';
+        document.getElementById('wishPill').classList.add('show');
+        createConfetti(150);
+      }, 500);
+    }
+  }
+}
+
+/* ── SPARKLES ── */
+document.addEventListener('click', (e) => {
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  sparkle.innerText = '✨';
+  sparkle.style.left = e.clientX + 'px';
+  sparkle.style.top = e.clientY + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 800);
+});
+</script>
+</body>
+</html>
